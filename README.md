@@ -40,29 +40,9 @@ jobs:
 
 This action has the following configuration options:
 
-| Key | Required | Default   | Description |
-|-----|---------|-----------|-------------|
-| `sanity_token` | No      | -         | Sanity API token with deploy permissions |
-
-## Examples
-
-### Basic deployment
-
-```yaml
-- name: Deploy blueprints
-  uses: sanity/runtime-actions@v1
-  with:
-    sanity_token: ${{ secrets.SANITY_AUTH_TOKEN }}
-```
-
-### Deployment with specific project and dataset
-
-```yaml
-- name: Deploy to staging
-  uses: sanity/runtime-actions@v1
-  with:
-    sanity_token: ${{ secrets.SANITY_AUTH_TOKEN }}
-```
+| Key | Required | Default   | Description                                                                |
+|-----|---------|-----------|----------------------------------------------------------------------------|
+| `sanity_token` | No      | -         | Sanity API token with deploy permissions. This can also be set via the ENV |
 
 ## Setting up secrets
 

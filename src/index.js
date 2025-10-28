@@ -17,6 +17,7 @@ async function run() {
     // Build the command arguments
     const args = ['blueprints', 'deploy'];
 
+    // support for organization-level blueprints can be added here in the future
     if (projectId) {
       args.push('--project', projectId);
     }
@@ -25,11 +26,11 @@ async function run() {
       args.push('--dataset', dataset);
     }
 
+    // @todo: support for --config could be added.
     if (blueprintPath && blueprintPath !== '.') {
       args.push('--path', blueprintPath);
     }
 
-    // Execute the sanity CLI command
     core.info(`Running: sanity ${args.join(' ')}`);
     await exec.exec('npx', ['@sanity/runtime-cli', ...args]);
 

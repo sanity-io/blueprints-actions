@@ -1,12 +1,12 @@
 {
   "name": "@sanity/runtime-actions",
   "version": "0.0.1",
-  "description": "GitHub Action to deploy Sanity blueprints using @sanity/runtime-cli",
+  "description": "GitHub Action to interact with Sanity blueprints using @sanity/runtime-cli",
   "main": "dist/index.js",
   "private": false,
   "scripts": {
     "build": "ncc build src/index.js -o dist",
-    "test": "tap src/**/*.test.js"
+    "test": "tap --show-full-coverage --include=test/**/*.test.js"
   },
   "keywords": [
     "github-action",

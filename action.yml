@@ -2,22 +2,26 @@ name: 'Sanity Runtime Deploy'
 description: 'Deploy Sanity blueprints using the @sanity/runtime-cli'
 branding:
   icon: 'upload-cloud'
-  color: 'red'
+  color: 'blue'
 
 inputs:
   # This can be set as an ENV variable or passed directly
   sanity_token:
     description: 'Sanity API token with deploy permissions'
-    required: false
+    required: true
   project_id:
-    description: 'Sanity project ID'
+    description: 'Sanity project ID (required if organization_id is not provided)'
     required: false
   organization_id:
-    description: 'Sanity organization ID'
+    description: 'Sanity organization ID (required if project_id is not provided)'
     required: false
   stack_id:
-    description: 'Blueprint stack ID'
+    description: 'Blueprint stack ID to interact with'
     required: true
+
+outputs:
+  deployment_status:
+    description: 'Status of the deployment'
 
 runs:
   using: 'node24'

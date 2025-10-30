@@ -36,16 +36,8 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v5
-      
-      - name: Setup Node.js  
-        uses: actions/setup-node@v6
-        with:
-          node-version: '24'
-
       - name: Deploy blueprints
-        uses: sanity/runtime-actions@v1
+        uses: sanity-io/runtime-actions@v1
         with:
           sanity_token: ${{ secrets.SANITY_AUTH_TOKEN }}
           stack_id: 'ST_1234xyz'
@@ -58,7 +50,7 @@ Alternatively, deploy to an organization instead of a specific project:
 
 ```yaml
 - name: Deploy blueprints
-  uses: sanity/runtime-actions@v1
+  uses: sanity-io/runtime-actions@v1
   with:
     sanity_token: ${{ secrets.SANITY_AUTH_TOKEN }}
     stack_id: 'ST_1234xyz'

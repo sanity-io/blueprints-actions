@@ -26,6 +26,14 @@ outputs:
 runs:
   using: 'composite'
   steps:
+    - name: Checkout repository
+      uses: actions/checkout@v5
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v6
+      with:
+        node-version: '24'
+
     - name: Validate inputs
       shell: bash
       run: |
@@ -44,9 +52,9 @@ runs:
         SANITY_PROJECT_ID: ${{ inputs.project_id }}
       run: |
         echo "Starting Sanity blueprints deployment..."
-        echo "Running: sanity blueprints deploy"
+        echo "Running: sanity blueprints deploy"g
         
-        npx @sanity/runtime-cli blueprints deploy
+        npx -y @sanity/runtime-cli blueprints deploy
         
         echo "✅ Blueprints deployed successfully!"
         echo "status=success" >> $GITHUB_OUTPUT

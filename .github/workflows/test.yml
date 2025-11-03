@@ -23,6 +23,6 @@ jobs:
         uses: ./
         with:
           sanity_token: ${{ secrets.SANITY_TOKEN }}
-          stack_id: "ST-f8rx5u9z"
-          project_id: "f8rx5u9z"
+          stack_id: ${{ secrets.STAGING_STACK_ID }}
+          project_id: ${{ secrets.PROJECT_ID }}
           organization_id: ${{ secrets.ORGANIZATION_ID }}

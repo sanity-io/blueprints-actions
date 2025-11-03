@@ -1,9 +1,0 @@
-import { documentEventHandler } from "@sanity/functions";
-const handler = documentEventHandler(async ({ context, event }) => {
-  const time = (/* @__PURE__ */ new Date()).toLocaleTimeString();
-  console.log(`👋 Your Sanity Function was called at ${time}`);
-});
-export {
-  handler
-};
-//# sourceMappingURL=index.js.map

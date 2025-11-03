@@ -23,8 +23,8 @@ jobs:
       - name: Integration Test - Deploy Staging Blueprint
         uses: ./
         with:
-          sanity_token: ${{ secrets.SANITY_TOKEN }}
-          stack_id: ${{ secrets.STACK_ID }}
-          project_id: ${{ secrets.PROJECT_ID }}
-          organization_id: ${{ secrets.ORGANIZATION_ID }}
-          working_directory: "./tests"
+          sanity-token: ${{ secrets.SANITY_TOKEN }}
+          stack-id: ${{ secrets.STACK_ID }}
+          project-id: ${{ secrets.PROJECT_ID }}
+          organization-id: ${{ secrets.ORGANIZATION_ID }}
+          working-directory: "./tests"

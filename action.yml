@@ -34,6 +34,13 @@ runs:
       with:
         node-version: '24'
 
+    # checkout above will lose reference to node_modules in CI
+    # this step ensures we have the dependencies we need
+    - name: Install dependencies
+      shell: bash
+      run: |
+        npm install @sanity/blueprints @sanity/functions
+
     - name: Validate inputs
       shell: bash
       run: |
@@ -51,8 +58,7 @@ runs:
         SANITY_ORGANIZATION_ID: ${{ inputs.organization_id }}
         SANITY_PROJECT_ID: ${{ inputs.project_id }}
       run: |
-        echo "Starting Sanity blueprints deployment..."
-        echo "Running: sanity blueprints deploy"g
+        echo "Starting Sanity Blueprints deployment..."
         
         npx -y @sanity/runtime-cli blueprints deploy
         

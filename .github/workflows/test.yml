@@ -24,7 +24,7 @@ jobs:
         uses: ./
         with:
           sanity_token: ${{ secrets.SANITY_TOKEN }}
-          stack_id: "ST-f8rx5u9z"
-          project_id: "f8rx5u9z"
-          working_directory: "./tests"
+          stack_id: ${{ secrets.STACK_ID }}
+          project_id: ${{ secrets.PROJECT_ID }}
           organization_id: ${{ secrets.ORGANIZATION_ID }}
+          working_directory: "./tests"

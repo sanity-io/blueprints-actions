@@ -12,7 +12,7 @@ export default defineBlueprint({
                 projection: "{title, _id, _type}",
                 resource: {
                     type: 'dataset',
-                    id: 'f8rx5u9z.production'
+                    id: `${process.env.SANITY_PROJECT_ID}.production`
                 }
             }
         }),

@@ -17,6 +17,10 @@ inputs:
   stack_id:
     description: 'Blueprint stack ID to interact with'
     required: true
+  working_directory:
+    description: 'Working directory to run the deployment in'
+    required: false
+    default: '.'
 
 outputs:
   deployment_status:
@@ -52,6 +56,7 @@ runs:
     - name: Deploy blueprints
       id: deploy
       shell: bash
+      working-directory: ${{ inputs.working_directory || '.' }}
       env:
         SANITY_AUTH_TOKEN: ${{ inputs.sanity_token }}
         SANITY_BLUEPRINT_STACK_ID: ${{ inputs.stack_id }}

@@ -5,21 +5,25 @@ branding:
   color: 'blue'
 
 inputs:
-  sanity_token:
+  sanity-token:
     description: 'Sanity API token with deploy permissions'
     required: true
-  project_id:
-    description: 'Sanity project ID (required if organization_id is not provided)'
+  project-id:
+    description: 'Sanity project ID (required if organization-id is not provided)'
     required: false
-  organization_id:
-    description: 'Sanity organization ID (required if project_id is not provided)'
+  organization-id:
+    description: 'Sanity organization ID (required if project-id is not provided)'
     required: false
-  stack_id:
+  stack-id:
     description: 'Blueprint stack ID to interact with'
     required: true
+  working-directory:
+    description: 'Working directory to run the deployment in'
+    required: false
+    default: '.'
 
 outputs:
-  deployment_status:
+  deployment-status:
     description: 'Status of the deployment'
     value: ${{ steps.deploy.outputs.status }}
 
@@ -34,25 +38,32 @@ runs:
       with:
         node-version: '24'
 
+    # checkout above will lose reference to node_modules in CI
+    # this step ensures we have the dependencies we need
+    - name: Install dependencies
+      shell: bash
+      run: |
+        npm install @sanity/blueprints @sanity/functions
+
     - name: Validate inputs
       shell: bash
       run: |
-        if [ -z "${{ inputs.organization_id }}" ] && [ -z "${{ inputs.project_id }}" ]; then
-          echo "‼️Missing either a \`project_id\` or an \`organization_id\`."
+        if [ -z "${{ inputs.organization-id }}" ] && [ -z "${{ inputs.project-id }}" ]; then
+          echo "‼️Missing either a \`project-id\` or an \`organization-id\`."
           exit 1
         fi
 
     - name: Deploy blueprints
       id: deploy
       shell: bash
+      working-directory: ${{ inputs.working-directory || '.' }}
       env:
-        SANITY_AUTH_TOKEN: ${{ inputs.sanity_token }}
-        SANITY_BLUEPRINT_STACK_ID: ${{ inputs.stack_id }}
-        SANITY_ORGANIZATION_ID: ${{ inputs.organization_id }}
-        SANITY_PROJECT_ID: ${{ inputs.project_id }}
+        SANITY_AUTH_TOKEN: ${{ inputs.sanity-token }}
+        SANITY_BLUEPRINT_STACK_ID: ${{ inputs.stack-id }}
+        SANITY_ORGANIZATION_ID: ${{ inputs.organization-id }}
+        SANITY_PROJECT_ID: ${{ inputs.project-id }}
       run: |
-        echo "Starting Sanity blueprints deployment..."
-        echo "Running: sanity blueprints deploy"g
+        echo "Starting Sanity Blueprints deployment..."
         
         npx -y @sanity/runtime-cli blueprints deploy
         

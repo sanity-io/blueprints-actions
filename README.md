@@ -35,8 +35,6 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
-        
       - name: Deploy blueprints
         uses: sanity-io/blueprints-action-deploy@v1
         with:

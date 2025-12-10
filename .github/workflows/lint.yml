@@ -1,0 +1,25 @@
+name: 'Validate GitHub Action'
+on: pull_request
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Validate action.yml file
+        id: validate
+        run: |
+          npm install -g ajv-cli ajv-formats js-yaml
+          curl -o action-schema.json https://www.schemastore.org/github-action.json
+          echo "Validating against schema..."
+          ajv validate \
+              --all-errors \
+              --verbose \
+              -s action-schema.json \
+              -d action.yml || {
+                echo "";
+                echo "✗ Schema validation failed.";
+                exit 1;
+              }
+          echo "✓ Validation passed!"

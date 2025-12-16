@@ -1,4 +1,4 @@
-name: 'Validate GitHub Action'
+name: 'Validate GitHub Deploy Action'
 on: pull_request
 
 jobs:
@@ -7,7 +7,7 @@ jobs:
     steps:
       - uses: actions/checkout@v5
 
-      - name: Validate action.yml file
+      - name: Validate deploy/action.yml file
         id: validate
         run: |
           npm install -g ajv-cli ajv-formats js-yaml
@@ -17,7 +17,7 @@ jobs:
               --all-errors \
               --verbose \
               -s action-schema.json \
-              -d action.yml || {
+              -d ./deploy/action.yml || {
                 echo "";
                 echo "✗ Schema validation failed.";
                 exit 1;

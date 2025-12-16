@@ -154,8 +154,9 @@ For issues and questions:
 - Open an issue in this repository
 
 ## Contributing
+
 ### Tests
-see [TESTING](/docs/testing.md) for details.
+see [testing](docs/testing.md) for details.
 
 ## License
 

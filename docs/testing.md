@@ -32,7 +32,7 @@ All tests run against the staging environment (`sanity.work`).
 - All required fields are present
 - Input/output definitions are valid
 
-**Success criteria:** No errors contained in the action.yml file
+**Success criteria:** No errors found in the action.yml file
 
 ---
 
@@ -147,7 +147,7 @@ env:
 **To run manual staging tests:**
 
 1. Navigate to **Actions** tab in GitHub repository
-2. Select **Test CLI Action** workflow
+2. Select **Manual Blueprint Deployment Action** workflow
 3. Click **Run workflow**
 4. Select branch to test
 5. Click **Run workflow** button

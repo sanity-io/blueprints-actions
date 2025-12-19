@@ -10,6 +10,7 @@ import {
 
 export default defineBlueprint({
     blueprintVersion: '2025-10-31',
+
     resources: [
         defineDocumentFunction({
             name: 'integration-test',
@@ -28,8 +29,7 @@ export default defineBlueprint({
             name: 'media-library-handler',
             type: 'sanity.function.media-library.asset',
             event: {
-                on: ["create", "update"],
-                filter: "mimeType match 'image/*'",
+                on: ["create"],
                 projection: "{_id, mimeType, size}",
                 resource: {
                     type: 'media-library',
@@ -44,7 +44,7 @@ export default defineBlueprint({
             filter: "_type == 'post'",
             projection: '{title, _id}',
             dataset: 'production',
-            apiVersion: '2025-01-01',
+            apiVersion: 'vX',
             project: process.env.SANITY_PROJECT_ID,
             httpMethod: 'POST',
             status: 'enabled',
@@ -62,15 +62,15 @@ export default defineBlueprint({
             project: process.env.SANITY_PROJECT_ID,
         }),
         defineRole({
-            name: 'test-viewer',
-            title: 'Test Viewer',
+            name: 'testing',
+            title: 'Tester',
             description: 'A test role for viewing content',
             appliesToUsers: true,
             appliesToRobots: false,
             permissions: [
                 {
-                    name: 'read',
-                    action: 'read',
+                    name: 'sanity-all-documents',
+                    action: 'mode',
                 },
             ],
         }),

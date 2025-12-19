@@ -3,7 +3,6 @@ on:
   pull_request:
     paths:
       - 'deploy/**'
-      - 'plan/**'
       - 'tests/**'
       - '.github/workflows/test.yml'
 
@@ -13,14 +12,11 @@ env:
 jobs:
   test:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        action: [ deploy, plan ]
     permissions:
       contents: read
       pull-requests: write
     steps:
-      - run: echo "Running integration test for ${{ matrix.action }} action"
+      - run: echo "Running integration test for Deploy action"
 
       - uses: actions/checkout@v5
 
@@ -30,13 +26,13 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
-        working-directory: ./tests/${{ matrix.action }}
+        working-directory: ./tests/deploy
 
       - name: Integration Test
-        uses: ./${{ matrix.action }}
+        uses: ./deploy
         with:
           sanity-token: ${{ secrets.SANITY_TOKEN }}
           stack-id: ${{ secrets.STACK_ID }}
           project-id: ${{ secrets.PROJECT_ID }}
           organization-id: ${{ secrets.ORGANIZATION_ID }}
-          working-directory: "./tests/${{ matrix.action }}"
+          working-directory: "./tests/deploy"

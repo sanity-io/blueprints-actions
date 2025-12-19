@@ -10,16 +10,16 @@ set -e
 component=$1
 major=$2
 minor=$3
-dry-run=${4:-false}
 
-if [ $4 == true ]; then
-  echo "Testing release for component: ${component}, version: ${major}.${minor}"
-  exit 1
+if [ "$4" = "dry" ]; then
+  echo "Testing release tag for component: ${component}, version: ${major}.${minor}"
+  exit 0
 fi
 
 if [ -z "$component" ] || [ -z "$major" ] || [ -z "$minor" ]; then
-  echo "Usage: $0 <component> <major> <minor> [dry-run]"
+  echo "Usage: $0 <component> <major> <minor> [dry]"
   exit 1
+fi
 
 echo "Tagging release for component: ${component}, version: ${major}.${minor}"
 
@@ -27,10 +27,10 @@ echo "Tagging release for component: ${component}, version: ${major}.${minor}"
 git tag -d ${component}-v${major} 2>/dev/null || true
 git tag -d ${component}-v${major}.${minor} 2>/dev/null || true
 git push origin :${component}-v${major} 2>/dev/null || true
-git push origin :${component}-v${major}.${minor} 2/dev/null || true
+git push origin :${component}-v${major}.${minor} 2>/dev/null || true
 
 ## create and push new tags
 git tag -a ${component}-v${major} -m "Release ${component}-v${major}"
 git tag -a ${component}-v${major}.${minor} -m "Release ${component}-v${major}.${minor}"
 git push origin ${component}-v${major}
-git push origin $component-v${major}.${minor}
+git push origin ${component}-v${major}.${minor}

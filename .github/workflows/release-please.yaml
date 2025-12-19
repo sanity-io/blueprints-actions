@@ -44,5 +44,5 @@ jobs:
         run: .github/scripts/tag-release.sh deploy ${{ steps.release.outputs.deploy--major }} ${{ steps.release.outputs.deploy--minor }}
 
       - name: tag release for plan action
-        if: ${{ steps.release.outputs.deploy--release_created }}
-        run: .github/scripts/tag-release.sh plan ${{ steps.release.outputs.deploy--major }} ${{ steps.release.outputs.deploy--minor }}
+        if: ${{ steps.release.outputs.plan--release_created }}
+        run: .github/scripts/tag-release.sh plan ${{ steps.release.outputs.plan--major }} ${{ steps.release.outputs.plan--minor }}

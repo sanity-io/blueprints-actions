@@ -11,7 +11,6 @@ import {
 export default defineBlueprint({
     blueprintVersion: '2025-10-31',
     resources: [
-        // Document event function
         defineDocumentFunction({
             name: 'integration-test',
             type: 'sanity.function.document',
@@ -25,8 +24,6 @@ export default defineBlueprint({
                 }
             }
         }),
-        
-        // Media Library Asset function
         defineMediaLibraryAssetFunction({
             name: 'media-library-handler',
             type: 'sanity.function.media-library.asset',
@@ -36,12 +33,10 @@ export default defineBlueprint({
                 projection: "{_id, mimeType, size}",
                 resource: {
                     type: 'media-library',
-                    id: process.env.SANITY_PROJECT_ID || 'test'
+                    id: process.env.SANITY_PROJECT_ID
                 }
             }
         }),
-        
-        // Document webhook
         defineDocumentWebhook({
             name: 'test-webhook',
             url: 'https://webhook.site/test-deploy-action',
@@ -50,28 +45,22 @@ export default defineBlueprint({
             projection: '{title, _id}',
             dataset: 'production',
             apiVersion: '2025-01-01',
-            project: process.env.SANITY_PROJECT_ID || 'test',
+            project: process.env.SANITY_PROJECT_ID,
             httpMethod: 'POST',
             status: 'enabled',
         }),
-        
-        // Dataset resource
         defineDataset({
             name: 'test-dataset',
             datasetName: 'test-dataset',
             aclMode: 'public',
-            project: process.env.SANITY_PROJECT_ID || 'test',
+            project: process.env.SANITY_PROJECT_ID,
         }),
-        
-        // CORS origin
         defineCorsOrigin({
             name: 'test-cors',
             origin: 'https://example.com',
             allowCredentials: true,
-            project: process.env.SANITY_PROJECT_ID || 'test',
+            project: process.env.SANITY_PROJECT_ID,
         }),
-        
-        // Custom role
         defineRole({
             name: 'test-viewer',
             title: 'Test Viewer',

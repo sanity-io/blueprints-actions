@@ -4,7 +4,7 @@ on:
     paths:
       - 'plan/**'
       - 'tests/**'
-      - '.github/workflows/test.yml'
+      - '.github/workflows/test-plan.yml'
 
 env:
   SANITY_INTERNAL_ENV: 'staging'

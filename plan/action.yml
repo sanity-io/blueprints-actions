@@ -77,18 +77,41 @@ runs:
           const planOutput = `${{ steps.plan.outputs.result }}`;
           const prNumber = context.issue.number;
           
-          const commentBody = `
+          // Unique identifier to find this comment
+          const commentIdentifier = '<!-- sanity-blueprints-plan -->';      
+          
+          const commentBody = `${commentIdentifier}
             ## Sanity Blueprints Deployment Plan
             <details>
               <summary>View planned changes</summary>
               <pre>${planOutput}</pre>
             </details>
           `;
-
-          await github.rest.issues.createComment({
+          
+          // Find existing comment
+          const { data: comments } = await gihub.rest.issues.listComments({
             ...context.repo,
-            owner: context.repo.owner,
-            repo: context.repo.repo,
             issue_number: prNumber,
-            body: commentBody,
           });
+
+          const existingComment = comments.find(comment =>
+            comment.body?.includes(commentIdentifier)
+          );
+      
+          if (existingComment) {
+            // Update existing comment
+            await github.rest.issues.updateComment({
+              ...context.repo,
+              comment_id: existingComment.id,
+              body: commentBody,
+            });
+          } else {
+            // Create new comment
+            await github.rest.issues.createComment({
+              ...context.repo,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: prNumber,
+              body: commentBody,
+            });
+          }

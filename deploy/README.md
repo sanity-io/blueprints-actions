@@ -33,19 +33,6 @@ jobs:
           project-id: '1234xyz'
 ```
 
-### Deploy to Organization
-
-Alternatively, deploy to an organization instead of a specific project:
-
-```yaml
-- name: Deploy blueprints
-  uses: sanity-io/blueprints-actions/deploy@v2
-  with:
-    sanity-token: ${{ secrets.SANITY_TOKEN }}
-    stack-id: 'ST_1234xyz'
-    organization-id: 'abc123'
-```
-
 If you have your blueprint files in a specific directory, specify the `working-directory` input:
 ```yaml
 

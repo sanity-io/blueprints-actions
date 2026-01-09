@@ -1,7 +1,14 @@
 # Plan Action
 
 ## Description
-A GitHub Action that analyzes and displays the changes that would be applied to your Sanity Blueprints on the next deployment. It provides a detailed plan of resources to be created, updated, or deleted, helping you review changes before applying them.
+A GitHub Action that analyzes and displays the changes that would be applied to your Sanity Blueprints on the next deployment.
+It automatically posts (or updates) a comment on your pull request with a detailed plan of resources to be created, updated, or deleted
+
+## How It Works
+1. Runs `sanity blueprints plan` to analyze changes
+2. Automatically posts the results as a comment on your pull request
+3. On subsequent runs, **updates** the existing comment instead of creating duplicates
+4. Comment includes a collapsible details section to keep PRs clean
 
 ## Inputs
 See the [main documentation](../README.md#inputs) for all available inputs.
@@ -39,19 +46,6 @@ jobs:
           sanity-token: ${{ secrets.SANITY_TOKEN }}
           stack-id: 'ST_1234xyz'
           project-id: '1234xyz'
-```
-
-### Use with an Organization
-
-Alternatively, run with an organization instead of a specific project:
-
-```yaml
-- name: Plan blueprints changes
-  uses: sanity-io/blueprints-actions/plan@v1
-  with:
-    sanity-token: ${{ secrets.SANITY_TOKEN }}
-    stack-id: 'ST_1234xyz'
-    organization-id: 'abc123'
 ```
 
 If you have your blueprint files in a specific directory, specify the `working-directory` input:

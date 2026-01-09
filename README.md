@@ -36,8 +36,9 @@ Before using these actions, you must:
 
 *Either `project-id` **or** `organization-id` must be provided.
 
-## Setup
+*If you have your blueprint files in a specific directory, specify the `working-directory`*
 
+## Setup
 ### 1. Create a Sanity API Token
 
 1. Navigate to [manage.sanity.io](https://manage.sanity.io)

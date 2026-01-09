@@ -7,7 +7,7 @@ This action automates working with your Sanity Blueprints by executing a set of 
 **Currently supported commands:**
 - [blueprints-actions/deploy](deploy/README.md): Deploy your blueprints to a Sanity project or organization.
 - [blueprints-actions/plan](plan/README.md): Shows changes that would be applied on your next deploy.
-
+ 
 ### Prerequisites
 
 Before using these actions, you must:

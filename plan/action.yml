@@ -89,7 +89,7 @@ runs:
           `;
           
           // Find existing comment
-          const { data: comments } = await gihub.rest.issues.listComments({
+          const { data: comments } = await github.rest.issues.listComments({
             ...context.repo,
             issue_number: prNumber,
           });

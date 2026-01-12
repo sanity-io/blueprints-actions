@@ -40,12 +40,8 @@ jobs:
 
       - name: tag release for deploy action
         if: ${{ steps.release.outputs.deploy--release_created }}
-        run: |
-          chmod +x .github/scripts/tag-release.sh
-          .github/scripts/tag-release.sh deploy ${{ steps.release.outputs.deploy--major }} ${{ steps.release.outputs.deploy--minor }}
+        run: .github/scripts/tag-release.sh deploy ${{ steps.release.outputs.deploy--major }} ${{ steps.release.outputs.deploy--minor }}
 
       - name: tag release for plan action
         if: ${{ steps.release.outputs.plan--release_created }}
-        run: |
-          chmod +x .github/scripts/tag-release.sh
-          .github/scripts/tag-release.sh plan ${{ steps.release.outputs.plan--major }} ${{ steps.release.outputs.plan--minor }}
+        run: .github/scripts/tag-release.sh plan ${{ steps.release.outputs.plan--major }} ${{ steps.release.outputs.plan--minor }}

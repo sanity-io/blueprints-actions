@@ -1,19 +1,25 @@
 # Plan Action
 
 ## Description
-A GitHub Action that analyzes and displays the changes that would be applied to your Sanity Blueprints on the next deployment.
-It automatically posts (or updates) a comment on your pull request with a detailed plan of resources to be created, updated, or deleted
+
+A GitHub Action that analyzes and displays the changes that would be applied to your Sanity Blueprints on the next
+deployment.
+It automatically posts (or updates) a comment on your pull request with a detailed plan of resources to be created,
+updated, or deleted
 
 ## How It Works
+
 1. Runs `sanity blueprints plan` to analyze changes
 2. Automatically posts the results as a comment on your pull request
 3. On subsequent runs, **updates** the existing comment instead of creating duplicates
 4. Comment includes a collapsible details section to keep PRs clean
 
 ## Inputs
+
 See the [main documentation](../README.md#inputs) for all available inputs.
 
 ## Setup
+
 For initial setup and configuration, see the [main README](../README.md#setup).
 
 ## Usage
@@ -41,7 +47,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Plan blueprints changes
-        uses: sanity-io/blueprints-actions/plan@v1
+        uses: sanity-io/blueprints-actions/plan@plan-v1
         with:
           sanity-token: ${{ secrets.SANITY_TOKEN }}
           stack-id: 'ST_1234xyz'
@@ -52,7 +58,7 @@ If you have your blueprint files in a specific directory, specify the `working-d
 
 ```yaml
 - name: Plan blueprints
-  uses: sanity-io/blueprints-actions/plan@v1
+  uses: sanity-io/blueprints-actions/plan@plan-v1
   with:
     sanity-token: ${{ secrets.SANITY_TOKEN }}
     stack-id: 'ST_1234xyz'
@@ -61,6 +67,7 @@ If you have your blueprint files in a specific directory, specify the `working-d
 ```
 
 ### Output
+
 When you run this action, you'll see output similar to:
 
 ```
@@ -81,7 +88,8 @@ Resources to be deleted:
 Summary: 3 to create, 1 to update, 1 to delete
 ```
 
-This action provides a clear overview of the changes that will be applied during the next deployment of your Sanity Blueprints via a PR comment.
+This action provides a clear overview of the changes that will be applied during the next deployment of your Sanity
+Blueprints via a PR comment.
 
 ```
 ## Sanity Blueprints Deployment Plan

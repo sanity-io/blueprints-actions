@@ -42,8 +42,11 @@ runs:
     # this step ensures we have the dependencies we need
     - name: Install dependencies
       shell: bash
+      env:
+        NODE_PATH: /tmp/.sanity-action-deps/node_modules:$NODE_PATH
       run: |
-        npm install @sanity/blueprints @sanity/functions
+        # this should get around issues regarding package managers      
+        npm install --prefix /tmp/.sanity-action-deps @sanity/blueprints @sanity/functions
 
     - name: Validate inputs
       shell: bash
@@ -58,6 +61,7 @@ runs:
       shell: bash
       working-directory: ${{ inputs.working-directory || '.' }}
       env:
+        NODE_PATH: /tmp/.sanity-action-deps/node_modules:$NODE_PATH
         SANITY_AUTH_TOKEN: ${{ inputs.sanity-token }}
         SANITY_BLUEPRINT_STACK_ID: ${{ inputs.stack-id }}
         SANITY_ORGANIZATION_ID: ${{ inputs.organization-id }}

@@ -61,7 +61,6 @@ runs:
       shell: bash
       working-directory: ${{ inputs.working-directory || '.' }}
       env:
-        NODE_PATH: /tmp/.sanity-action-deps/node_modules:$NODE_PATH
         SANITY_AUTH_TOKEN: ${{ inputs.sanity-token }}
         SANITY_BLUEPRINT_STACK_ID: ${{ inputs.stack-id }}
         SANITY_ORGANIZATION_ID: ${{ inputs.organization-id }}

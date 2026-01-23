@@ -1,12 +1,16 @@
 # Deploy Action
 
 ## Description
-A GitHub Action that deploys your Sanity Blueprints to a specified Sanity project or organization using the [@sanity/runtime-cli](https://www.npmjs.com/package/@sanity/runtime-cli).
+
+A GitHub Action that deploys your Sanity Blueprints to a specified Sanity project or organization using
+the [@sanity/runtime-cli](https://www.npmjs.com/package/@sanity/runtime-cli).
 
 ## Inputs
+
 See the [main documentation](../README.md#inputs) for all available inputs.
 
 ## Setup
+
 For initial setup and configuration, see the [main README](../README.md#setup).
 
 ## Usage
@@ -26,7 +30,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Deploy blueprints
-        uses: sanity-io/blueprints-actions/deploy@v2
+        uses: sanity-io/blueprints-actions/deploy@deploy-v2
         with:
           sanity-token: ${{ secrets.SANITY_TOKEN }}
           stack-id: 'ST_1234xyz'
@@ -34,10 +38,11 @@ jobs:
 ```
 
 If you have your blueprint files in a specific directory, specify the `working-directory` input:
+
 ```yaml
 
 - name: Deploy blueprints
-  uses: sanity-io/blueprints-actions/deploy@v2
+  uses: sanity-io/blueprints-actions/deploy@deploy-v2
   with:
     sanity-token: ${{ secrets.SANITY_TOKEN }}
     stack-id: 'ST_1234xyz'
@@ -47,6 +52,6 @@ If you have your blueprint files in a specific directory, specify the `working-d
 
 ### Outputs
 
-| Output | Description |
-|--------|-------------|
+| Output              | Description              |
+|---------------------|--------------------------|
 | `deployment-status` | Status of the deployment |

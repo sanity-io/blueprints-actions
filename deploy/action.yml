@@ -43,7 +43,11 @@ runs:
     - name: Install dependencies
       shell: bash
       run: |
-        npm install @sanity/blueprints @sanity/functions
+        mkdir -p /tmp/.sanity-action-deps
+        # Install to temp dir to avoid workspace: protocol issues
+        npm install --prefix /tmp/.sanity-action-deps @sanity/blueprints @sanity/functions
+        # Move to working dir so bundler can resolve them
+        mv /tmp/.sanity-action-deps/node_modules ./node_modules
 
     - name: Validate inputs
       shell: bash

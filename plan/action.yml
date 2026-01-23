@@ -44,8 +44,10 @@ runs:
     - name: Install dependencies
       shell: bash
       run: |
-        # this should get around issues regarding package managers      
-        npm install --no-save @sanity/blueprints @sanity/functions
+        # Install to temp dir to avoid workspace: protocol issues
+        npm install --prefix /tmp/.sanity-action-deps @sanity/blueprints @sanity/functions
+        # Move to working dir so bundler can resolve them
+        mv /tmp/.sanity-action-deps/node_modules ./node_modules
 
     - name: Validate inputs
       shell: bash

@@ -1,8 +1,9 @@
 {
   "devDependencies": {
-    "@sanity/cli": "^5.0.1",
-    "@sanity/blueprints": "^0.7.1",
+    "@sanity/cli": "^5.5.0",
+    "@sanity/blueprints": "^0.8.0",
     "@sanity/functions": "^1.1.0",
-    "sanity": "^5.0.1"
+    "sanity": "^5.5.0",
+    "@biomejs/biome": "^2.3.11"
   }
 }

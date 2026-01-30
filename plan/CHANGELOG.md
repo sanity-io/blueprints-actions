@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.1](https://github.com/sanity-io/blueprints-actions/compare/plan-v1.0.0...plan-v1.0.1) (2026-01-30)
+
+
+### Bug Fixes
+
+* install deps in tmp path for workspaces ([#15](https://github.com/sanity-io/blueprints-actions/issues/15)) ([cbcce0e](https://github.com/sanity-io/blueprints-actions/commit/cbcce0ee33fe37eaa682b428e0bb5c74b0c57c43))
+
 ## 1.0.0 (2026-01-09)
 
 

@@ -1,13 +1,10 @@
 import {documentEventHandler} from '@sanity/functions'
 import {createClient} from '@sanity/client'
-import chalk from 'chalk'
 
 const PAGE_URL_QUERY = `*[_type == "page" && _id == $id] {
   _type,
   _id,
   title,
-  slug,
-  site,
 }`;
 
 export const handler = documentEventHandler(async ({context, event}) => {

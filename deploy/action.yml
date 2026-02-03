@@ -74,7 +74,7 @@ runs:
       run: |
         echo "Starting Sanity Blueprints deployment..."
         
-        npx -y @sanity/runtime-cli blueprints deploy
+        npx -y -p @sanity/runtime-cli blueprints deploy
         
         echo "✅ Blueprints deployed successfully!"
         echo "status=success" >> $GITHUB_OUTPUT

@@ -36,8 +36,6 @@ runs:
 
     - name: Setup Node.js
       uses: actions/setup-node@v6
-      with:
-        node-version: '24'
 
     # checkout above will lose reference to node_modules in CI
     # this step ensures we have the dependencies we need

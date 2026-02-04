@@ -73,11 +73,9 @@ runs:
         SANITY_PROJECT_ID: ${{ inputs.project-id }}
       run: |
         echo "Starting Sanity Blueprints deployment..."
-
-        # Install runtime-cli to temp location to avoid modifying user's dependencies
         mkdir -p /tmp/.sanity-runtime
         npm install --prefix /tmp/.sanity-runtime @sanity/runtime-cli
-
+        
         # Execute directly with node to avoid npx issues in pnpm environments
         node /tmp/.sanity-runtime/node_modules/@sanity/runtime-cli/bin/run.js blueprints deploy
 

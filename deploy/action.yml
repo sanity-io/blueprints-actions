@@ -30,29 +30,10 @@ outputs:
 runs:
   using: 'composite'
   steps:
-    #    - name: Checkout repository
-    #      uses: actions/checkout@v5
-
     - name: Setup Node.js
       uses: actions/setup-node@v6
       with:
         node-version: '24'
-
-    # checkout above will lose reference to node_modules in CI
-    # this step ensures we have the dependencies we need
-    #    - name: Install dependencies
-    #      shell: bash
-    #      run: |
-    #        # Detect and use the user's package manager
-    #        if [ -f "pnpm-lock.yaml" ]; then
-    #          corepack enable pnpm && pnpm install --frozen-lockfile
-    #        elif [ -f "yarn.lock" ]; then
-    #          corepack enable yarn && yarn install --frozen-lockfile
-    #        elif [ -f "package-lock.json" ]; then
-    #          npm ci
-    #        elif [ -f "package.json" ]; then
-    #          npm install
-    #        fi
 
     - name: Validate inputs
       shell: bash

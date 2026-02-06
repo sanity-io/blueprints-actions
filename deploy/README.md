@@ -36,7 +36,7 @@ jobs:
         run: npm ci  # or pnpm/yarn
 
       - name: Deploy blueprints
-        uses: sanity-io/blueprints-actions/deploy@deploy-v2
+        uses: sanity-io/blueprints-actions/deploy@deploy-v3
         with:
           sanity-token: ${{ secrets.SANITY_TOKEN }}
           stack-id: 'ST_1234xyz'
@@ -48,7 +48,7 @@ If you have your blueprint files in a specific directory, specify the `working-d
 ```yaml
 
 - name: Deploy blueprints
-  uses: sanity-io/blueprints-actions/deploy@deploy-v2
+  uses: sanity-io/blueprints-actions/deploy@deploy-v3
   with:
     sanity-token: ${{ secrets.SANITY_TOKEN }}
     stack-id: 'ST_1234xyz'

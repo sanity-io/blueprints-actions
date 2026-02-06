@@ -1,5 +1,16 @@
 # Changelog
 
+## [2.0.0](https://github.com/sanity-io/blueprints-actions/compare/plan-v1.0.1...plan-v2.0.0) (2026-02-06)
+
+
+### ⚠ BREAKING CHANGES
+
+* respect users dependencies and package manager ([#18](https://github.com/sanity-io/blueprints-actions/issues/18))
+
+### Bug Fixes
+
+* respect users dependencies and package manager ([#18](https://github.com/sanity-io/blueprints-actions/issues/18)) ([862364f](https://github.com/sanity-io/blueprints-actions/commit/862364f648af1472c532413eeb9da7ee8e664778))
+
 ## [1.0.1](https://github.com/sanity-io/blueprints-actions/compare/plan-v1.0.0...plan-v1.0.1) (2026-01-30)
 
 

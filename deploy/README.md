@@ -29,6 +29,12 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Install dependencies
+        run: npm ci  # or pnpm/yarn
+
       - name: Deploy blueprints
         uses: sanity-io/blueprints-actions/deploy@deploy-v2
         with:

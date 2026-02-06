@@ -46,6 +46,12 @@ jobs:
   plan:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Install dependencies
+        run: npm ci  # or pnpm/yarn
+
       - name: Plan blueprints changes
         uses: sanity-io/blueprints-actions/plan@plan-v1
         with:

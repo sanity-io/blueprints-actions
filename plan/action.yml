@@ -31,24 +31,10 @@ runs:
   using: 'composite'
 
   steps:
-    - name: Checkout repository
-      uses: actions/checkout@v5
-
     - name: Setup Node.js
       uses: actions/setup-node@v6
       with:
         node-version: '24'
-
-    # checkout above will lose reference to node_modules in CI
-    # this step ensures we have the dependencies we need
-    - name: Install dependencies
-      shell: bash
-      run: |
-        mkdir -p /tmp/.sanity-action-deps
-        # Install to temp dir to avoid workspace: protocol issues
-        npm install --prefix /tmp/.sanity-action-deps @sanity/blueprints @sanity/functions
-        # Move to working dir so bundler can resolve them
-        mv /tmp/.sanity-action-deps/node_modules ./node_modules
 
     - name: Validate inputs
       shell: bash
@@ -69,7 +55,10 @@ runs:
         SANITY_PROJECT_ID: ${{ inputs.project-id }}
       run: |
         echo "Running sanity blueprints plan..."
-        PLAN_OUTPUT=$(npx -y @sanity/runtime-cli blueprints plan)
+        mkdir -p /tmp/.sanity-runtime
+        npm install --prefix /tmp/.sanity-runtime @sanity/runtime-cli
+        
+        PLAN_OUTPUT=$(node /tmp/.sanity-runtime/node_modules/@sanity/runtime-cli/bin/run.js blueprints plan)
         echo "result<<EOF" >> $GITHUB_OUTPUT
         echo "$PLAN_OUTPUT" >> $GITHUB_OUTPUT
         echo "EOF" >> $GITHUB_OUTPUT

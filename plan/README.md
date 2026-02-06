@@ -53,7 +53,7 @@ jobs:
         run: npm ci  # or pnpm/yarn
 
       - name: Plan blueprints changes
-        uses: sanity-io/blueprints-actions/plan@plan-v1
+        uses: sanity-io/blueprints-actions/plan@plan-v2
         with:
           sanity-token: ${{ secrets.SANITY_TOKEN }}
           stack-id: 'ST_1234xyz'
@@ -64,7 +64,7 @@ If you have your blueprint files in a specific directory, specify the `working-d
 
 ```yaml
 - name: Plan blueprints
-  uses: sanity-io/blueprints-actions/plan@plan-v1
+  uses: sanity-io/blueprints-actions/plan@plan-v2
   with:
     sanity-token: ${{ secrets.SANITY_TOKEN }}
     stack-id: 'ST_1234xyz'

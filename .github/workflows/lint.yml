@@ -13,7 +13,7 @@ jobs:
       matrix:
           action: [ deploy, plan ]
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
 
       - name: Validate ${{ matrix.action }}/action files
         id: validate

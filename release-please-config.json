@@ -2,10 +2,18 @@
   "release-type": "simple",
   "packages": {
     "deploy": {
-      "component": "deploy"
+      "component": "deploy",
+      "extra-files": [
+        "deploy/README.md",
+        "README.md"
+      ]
     },
     "plan": {
-      "component": "plan"
+      "component": "plan",
+      "extra-files": [
+        "plan/README.md",
+        "README.md"
+      ]
     }
   }
 }

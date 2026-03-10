@@ -39,18 +39,12 @@ jobs:
         if: failure()
         uses: slackapi/slack-github-action@v2
         with:
+          webhook: ${{ secrets.SLACK_WEBHOOK_URL }}
+          webhook-type: incoming-webhook
           payload: |
-            {
-              "text": "❌ GH Action Runtime CLI Test Failed",
-              "blocks": [
-                {
-                  "type": "section",
-                  "text": {
-                    "type": "mrkdwn",
-                    "text": "*GH Action Runtime CLI Test* ❌\n\n*Status:* Failed\n*Environment:* Staging (sanity.work)\n*Workflow:* <${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|View Run>\n\n⚠️ Please check the workflow logs for details."
-                  }
-                }
-              ]
-            }
-        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+            text: "❌ GH Action Runtime CLI Test Failed"
+            blocks:
+              - type: "section"
+                text:
+                  type: "mrkdwn"
+                  text: "*GH Action Runtime CLI Test* ❌\n*Status:* Failed\n*Environment:* Staging (sanity.work)\n*Workflow:* <${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|View Run>\n⚠️ Please check the workflow logs for details."

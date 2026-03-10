@@ -47,4 +47,4 @@ jobs:
               - type: "section"
                 text:
                   type: "mrkdwn"
-                  text: "*GH Action Runtime CLI Test* ❌\n*Status:* Failed\n*Environment:* Staging (sanity.work)\n*Workflow:* <${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|View Run>\n\n⚠️ Please check the workflow logs for details."
+                  text: "*GH Action Runtime CLI Test* ❌\n*Status:* Failed\n*Environment:* Staging (sanity.work)\n*Workflow:* <${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|View Run>\n⚠️ Please check the workflow logs for details."

@@ -1,13 +1,18 @@
 # Sanity Blueprints Actions
-A suite of GitHub Actions for interacting with [Sanity Blueprints](https://www.sanity.io/docs/compute-and-ai/blueprints) using the [@sanity/runtime-cli](https://www.npmjs.com/package/@sanity/runtime-cli).
+
+A suite of GitHub Actions for interacting with [Sanity Blueprints](https://www.sanity.io/docs/compute-and-ai/blueprints)
+using the [@sanity/runtime-cli](https://www.npmjs.com/package/@sanity/runtime-cli).
 
 ## Overview
-This action automates working with your Sanity Blueprints by executing a set of `blueprints` commands with your specified configuration.
+
+This action automates working with your Sanity Blueprints by executing a set of `blueprints` commands with your
+specified configuration.
 
 **Currently supported commands:**
+
 - [blueprints-actions/deploy](deploy/README.md): Deploy your blueprints to a Sanity project or organization.
 - [blueprints-actions/plan](plan/README.md): Shows changes that would be applied on your next deploy.
- 
+
 ### Prerequisites
 
 Before using these actions, you must:
@@ -17,28 +22,29 @@ Before using these actions, you must:
    npx @sanity/runtime-cli blueprints init
    ```
 
-2. **Create and map your Function** according to the [Blueprints documentation](https://www.sanity.io/docs/compute-and-ai/blueprints)
+2. **Create and map your Function** according to
+   the [Blueprints documentation](https://www.sanity.io/docs/compute-and-ai/blueprints)
 
 3. **Obtain your Blueprint configuration** (see [Getting Configuration Values](#getting-configuration-values) below)
-
 
 ## Configuration
 
 ### Inputs
 
-| Parameter             | Required     | Description                                                                                                          |
-|-----------------------|--------------|----------------------------------------------------------------------------------------------------------------------|
-| `sanity-token`        | **Yes**      | Sanity API token with appropriate permissions                                                                        |
-| `stack-id`            | **Yes**      | Blueprint stack ID (e.g., `ST_1234xyz`)                                                                              |
-| `project-id`          | Conditional* | Sanity project ID                                                                                                    |
-| `organization-id`     | Conditional* | Sanity organization ID                                                                                               |
-| `working-directory`   | No           | Path to the directory containing your blueprint files (sanity.blueprint.ts, functions/). Defaults to repository root |
+| Parameter           | Required     | Description                                                                                                          |
+|---------------------|--------------|----------------------------------------------------------------------------------------------------------------------|
+| `sanity-token`      | **Yes**      | Sanity API token with `deploy` permissions                                                                           |
+| `stack-id`          | **Yes**      | Blueprint stack ID (e.g., `ST_1234xyz`)                                                                              |
+| `project-id`        | Conditional* | Sanity project ID                                                                                                    |
+| `organization-id`   | Conditional* | Sanity organization ID                                                                                               |
+| `working-directory` | No           | Path to the directory containing your blueprint files (sanity.blueprint.ts, functions/). Defaults to repository root |
 
 *Either `project-id` **or** `organization-id` must be provided.
 
 *If you have your blueprint files in a specific directory, specify the `working-directory`*
 
 ## Setup
+
 ### 1. Create a Sanity API Token
 
 1. Navigate to [manage.sanity.io](https://manage.sanity.io)
@@ -68,6 +74,7 @@ npx @sanity/runtime-cli blueprints config
 ```
 
 Output:
+
 ```
 Current configuration:
   Sanity Project: <project_id>
@@ -98,6 +105,7 @@ Use these values in your workflow configuration.
 ## Support
 
 For issues and questions:
+
 - Check the [Sanity documentation](https://www.sanity.io/docs)
 - Visit the [Sanity community](https://www.sanity.io/community)
 - Open an issue in this repository

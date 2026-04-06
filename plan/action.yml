@@ -54,7 +54,6 @@ runs:
         SANITY_ORGANIZATION_ID: ${{ inputs.organization-id }}
         SANITY_PROJECT_ID: ${{ inputs.project-id }}
       run: |
-        +e
         echo "Running sanity blueprints plan..."
         mkdir -p /tmp/.sanity-runtime
         npm install --prefix /tmp/.sanity-runtime @sanity/runtime-cli

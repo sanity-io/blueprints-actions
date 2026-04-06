@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.1](https://github.com/sanity-io/blueprints-actions/compare/plan-v2.0.0...plan-v2.0.1) (2026-04-06)
+
+
+### Bug Fixes
+
+* don't swallow errors on plan output ([#32](https://github.com/sanity-io/blueprints-actions/issues/32)) ([f16bd29](https://github.com/sanity-io/blueprints-actions/commit/f16bd292c4425687111cc4af02c20ab34e9e04ea))
+
 ## [2.0.0](https://github.com/sanity-io/blueprints-actions/compare/plan-v1.0.1...plan-v2.0.0) (2026-02-06)
 
 

@@ -58,10 +58,12 @@ runs:
         mkdir -p /tmp/.sanity-runtime
         npm install --prefix /tmp/.sanity-runtime @sanity/runtime-cli
         
-        PLAN_OUTPUT=$(node /tmp/.sanity-runtime/node_modules/@sanity/runtime-cli/bin/run.js blueprints plan)
+        PLAN_OUTPUT=$(node /tmp/.sanity-runtime/node_modules/@sanity/runtime-cli/bin/run.js blueprints plan) && EXIT_CODE=0 || EXIT_CODE=$?
         echo "result<<EOF" >> $GITHUB_OUTPUT
         echo "$PLAN_OUTPUT" >> $GITHUB_OUTPUT
         echo "EOF" >> $GITHUB_OUTPUT
+        
+        exit $EXIT_CODE
 
     - name: Output Plan Details To PR Comment
       uses: actions/github-script@v8

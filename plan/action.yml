@@ -66,7 +66,7 @@ runs:
         exit $EXIT_CODE
 
     - name: Output Plan Details To PR Comment
-      uses: actions/github-script@v8
+      uses: actions/github-script@v9
       with:
         script: |
           const planOutput = `${{ steps.plan.outputs.result }}`;

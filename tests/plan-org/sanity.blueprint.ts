@@ -6,7 +6,7 @@ import {
     defineScheduledFunction
 } from '@sanity/blueprints'
 
-const PROJECT_ID = process.env.SANITY_PROJECT_ID
+const PROJECT_ID = process.env.PROJECT_ID
 if (!PROJECT_ID) throw new Error('Missing SANITY_PROJECT_ID environment variable')
 
 export default defineBlueprint({
@@ -27,8 +27,10 @@ export default defineBlueprint({
         }),
         defineRobotToken({
             name: 'gha-plan-robot',
+            resourceType: 'project',
+            resourceId: '$.values.projectId',
             memberships: [{
-                resourceType: 'organization',
+                resourceType: 'project',
                 resourceId: '$.values.projectId',
                 roleNames: ['editor']
             }]

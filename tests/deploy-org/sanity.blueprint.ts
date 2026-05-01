@@ -14,22 +14,12 @@ export default defineBlueprint({
     blueprintVersion: '2026-04-30',
     values: {projectId: PROJECT_ID},
     resources: [
-        defineRole({
-            name: 'gha-custom-role',
-            title: 'GHA Custom Role',
-            description: 'A custom role for GitHub Actions integration tests',
-            appliesToUsers: true,
-            appliesToRobots: true,
-            permissions: [{
-                name: 'sanity-all-documents',
-                action: 'mode',
-                params: {mode: 'publish', history: true},
-            }],
-        }),
         defineRobotToken({
             name: 'org-gha-robot',
+            resourceType: 'project',
+            resourceId: '$.values.projectId',
             memberships: [{
-                resourceType: 'organization',
+                resourceType: 'project',
                 resourceId: '$.values.projectId',
                 roleNames: ['editor']
             }],
@@ -57,7 +47,7 @@ export default defineBlueprint({
                 projection: "{title, _id, _type}",
                 resource: {
                     type: 'dataset',
-                    id: `${process.env.SANITY_PROJECT_ID}.*`
+                    id: `${PROJECT_ID}.*`
                 }
             }
         })

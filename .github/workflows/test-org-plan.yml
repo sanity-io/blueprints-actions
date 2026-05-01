@@ -34,6 +34,6 @@ jobs:
           PROJECT_ID: ${{ secrets.PROJECT_ID }}
         with:
           sanity-token: ${{ secrets.SANITY_ORG_TOKEN }}
-          stack-id: ${{ secrets.STACK_ID }}
+          stack-id: ${{ secrets.ORG_STACK_ID }}
           organization-id: ${{ secrets.ORGANIZATION_ID }}
           working-directory: "./tests/plan-org"

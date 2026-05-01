@@ -48,7 +48,7 @@ Before using these actions, you must:
 
 *Either `project-id` **or** `organization-id` must be provided.
 
-*Legacy permissions: Tokens with `deploy` permissions are still valid. Organization level resources will require the
+*Deprecated permissions: Tokens with `deploy` permissions are still valid. Organization level resources will require the
 `blueprints` organization level token. All new tokens should use the `blueprints` token.
 
 *If you have your blueprint files in a specific directory, specify the `working-directory`*

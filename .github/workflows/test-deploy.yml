@@ -16,7 +16,7 @@ jobs:
       contents: read
       pull-requests: write
     steps:
-      - run: echo "Running integration test for Deploy action"
+      - run: echo "Running organization integration test for Deploy action"
 
       - uses: actions/checkout@v6
 
@@ -26,13 +26,14 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
-        working-directory: ./tests/deploy
+        working-directory: ./tests/deploy-org
 
       - name: Integration Test
         uses: ./deploy
+        env:
+          PROJECT_ID: ${{ secrets.PROJECT_ID }}
         with:
           sanity-token: ${{ secrets.SANITY_TOKEN }}
           stack-id: ${{ secrets.STACK_ID }}
-          project-id: ${{ secrets.PROJECT_ID }}
           organization-id: ${{ secrets.ORGANIZATION_ID }}
-          working-directory: "./tests/deploy"
+          working-directory: "./tests/deploy-org"

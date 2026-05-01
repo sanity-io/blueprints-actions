@@ -41,8 +41,21 @@ jobs:
         # x-release-please-end
         with:
           sanity-token: ${{ secrets.SANITY_TOKEN }}
-          stack-id: 'ST_1234xyz'
-          project-id: '1234xyz'
+          stack-id: ${{ secrets.SANITY_STACK_ID }}
+          organization-id: ${{ secrets.SANITY_ORGANIZATION_ID }}
+```
+
+**Deprecated** project-level token usage:
+
+```yaml
+- name: Deploy blueprints
+  # x-release-please-start-major
+  uses: sanity-io/blueprints-actions/deploy@deploy-v3
+  # x-release-please-end
+  with:
+    sanity-token: ${{ secrets.SANITY_TOKEN }}
+    stack-id: ${{ secrets.SANITY_STACK_ID }}
+    project-id: ${{ secrets.SANITY_PROJECT_ID }}
 ```
 
 If you have your blueprint files in a specific directory, specify the `working-directory` input:
@@ -55,8 +68,8 @@ If you have your blueprint files in a specific directory, specify the `working-d
   # x-release-please-end
   with:
     sanity-token: ${{ secrets.SANITY_TOKEN }}
-    stack-id: 'ST_1234xyz'
-    project-id: '1234xyz'
+    stack-id: ${{ secrets.SANITY_STACK_ID }}
+    organization-id: ${{ secrets.SANITY_ORGANIZATION_ID }}
     working-directory: './dir/to/blueprint/files'
 ```
 

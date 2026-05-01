@@ -5,7 +5,6 @@ export default defineBlueprint({
     resources: [
         defineDocumentFunction({
             name: 'integration-plan-test-function',
-            type: 'sanity.function.document',
             event: {
                 on: ["create", "update"],
                 filter: "_type == 'post'",

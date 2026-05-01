@@ -13,7 +13,6 @@ export default defineBlueprint({
     resources: [
         defineDocumentFunction({
             name: 'integration-test',
-            type: 'sanity.function.document',
             event: {
                 on: ["create", "update"],
                 filter: "_type == 'post'",

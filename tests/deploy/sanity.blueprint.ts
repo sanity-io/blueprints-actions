@@ -51,9 +51,9 @@ export default defineBlueprint({
             project: process.env.SANITY_PROJECT_ID,
         }),
         defineRole({
-            name: 'custom-role',
-            title: 'Custom Role',
-            description: 'A test role',
+            name: 'custom-project-based-role',
+            title: 'Custom Project Role',
+            description: 'A role for our tests',
             appliesToUsers: true,
             appliesToRobots: false,
             permissions: [

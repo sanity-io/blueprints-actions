@@ -45,7 +45,7 @@ jobs:
           organization-id: ${{ secrets.SANITY_ORGANIZATION_ID }}
 ```
 
-**Deprecated** project-level token usage:
+**Alternative** project-level token usage:
 
 ```yaml
 - name: Deploy blueprints

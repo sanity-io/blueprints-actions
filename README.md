@@ -41,15 +41,15 @@ Before using these actions, you must:
 
 ### Token Permissions:
 
-| Scope        | Permission   | Capabilities                                                                        | Required input    |
-|--------------|--------------|-------------------------------------------------------------------------------------|-------------------|
-| Organization | `blueprints` | All resource types                                                                  | `organization-id` |
-| Project      | `blueprints` | Project-scoped resources only (document functions, webhooks, datasets, CORS, roles) | `project-id`      |
+| Scope        | Permission            | Capabilities                                                                        | Required input    |
+|--------------|-----------------------|-------------------------------------------------------------------------------------|-------------------|
+| Organization | `Blueprints Deployer` | All resource types                                                                  | `organization-id` |
+| Project      | `Blueprints Deployer` | Project-scoped resources only (document functions, webhooks, datasets, CORS, roles) | `project-id`      |
 
 *Either `project-id` **or** `organization-id` must be provided.
 
-*Deprecated permissions: Tokens with `deploy` permissions are still valid. Organization level resources will require the
-`blueprints` organization level token. All new tokens should use the `blueprints` token.
+*Deprecated permissions: Tokens with `deployStudio` permissions are still valid. Organization level resources will
+require the `Blueprints Deployer` organization level token. All new tokens should use the `Blueprints Deployer` token.
 
 *If you have your blueprint files in a specific directory, specify the `working-directory`*
 
@@ -57,11 +57,27 @@ Before using these actions, you must:
 
 ### 1. Create a Sanity API Token
 
+#### Option A (recommended): Using the CLI
+
+Run this in your Sanity project directory
+
+```shell
+npx sanity blueprints mint-deploy-token
+```
+
+The command will create a robot token with the correct permissions and prompt you to copy it. For non-interactive use:
+
+```shell
+npx sanity blueprints mint-deploy-token --print
+```
+
+#### Option B: Using the Sanity Management UI
+
 1. Navigate to [manage.sanity.io](https://manage.sanity.io)
 2. Select your project or organization
 3. Create a token with the permission matching your deployment scope:
-    - **Project token**: Navigate to project -> API -> Tokens -> select `blueprints` permission
-    - **Organization token**: Navigate to organization -> API -> Tokens -> select `blueprints` permission
+    - **Project token**: Navigate to project -> API -> Tokens -> select `Blueprints Deployer` permission
+    - **Organization token**: Navigate to organization -> API -> Tokens -> select `Blueprints Deployer` permission
 4. Copy the token (you won't be able to see it again)
 
 ### 2. Add Token to GitHub Secrets

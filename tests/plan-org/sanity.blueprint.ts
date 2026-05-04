@@ -1,5 +1,5 @@
 import {
-    defineBlueprint,
+    defineBlueprint, defineDataset,
     defineDocumentFunction,
     defineRobotToken,
     defineRole,
@@ -26,7 +26,7 @@ export default defineBlueprint({
             }],
         }),
         defineRobotToken({
-            name: 'gha-plan-robot',
+            name: 'org-gha-robot',
             resourceType: 'project',
             resourceId: '$.values.projectId',
             memberships: [{
@@ -35,10 +35,16 @@ export default defineBlueprint({
                 roleNames: ['editor']
             }]
         }),
+        defineDataset({
+            name: 'org-test-dataset',
+            datasetName: 'org-test-dataset',
+            aclMode: 'public',
+            project: '$.values.projectId',
+        }),
         defineDocumentFunction({
             name: 'integration-plan-test-function',
             project: '$.values.projectId',
-            robotToken: '$.resources.gha-plan-robot',
+            robotToken: '$.resources.org-gha-robot',
             event: {
                 on: ["create", "update"],
                 filter: "_type == 'post'",

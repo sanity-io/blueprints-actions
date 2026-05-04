@@ -2,7 +2,6 @@ import {
     defineBlueprint,
     defineDocumentFunction,
     defineRobotToken,
-    defineRole,
     defineScheduledFunction,
     defineDataset
 } from '@sanity/blueprints'
@@ -32,6 +31,7 @@ export default defineBlueprint({
         }),
         defineScheduledFunction({
             name: 'scheduled-test',
+            env: {PROJECT_ID: PROJECT_ID},
             event: {
                 expression: '0 0 * * *', // every 24 hours
             },

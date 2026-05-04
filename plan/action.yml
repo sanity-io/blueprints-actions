@@ -79,9 +79,9 @@ runs:
             ## Sanity Blueprints Deployment Plan
             <details>
               <summary>View planned changes</summary>
-                \`\`\`
-                ${planOutput.trim()}
-                \`\`\`
+              <pre>
+                ${planOutput.trim()
+              </pre>
             </details>
           `;
           

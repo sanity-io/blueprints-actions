@@ -45,7 +45,7 @@ export default defineBlueprint({
             },
         }),
         defineCorsOrigin({
-            name: 'test-cors',
+            name: 'test-project-cors',
             origin: 'https://example.com',
             allowCredentials: true,
             project: process.env.SANITY_PROJECT_ID,

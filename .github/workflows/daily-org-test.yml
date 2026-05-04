@@ -1,0 +1,51 @@
+name: 'Daily Runtime CLI Test For Organizations'
+on:
+  schedule:
+    # Run daily at 9:00 AM UTC
+    - cron: '0 9 * * *'
+  workflow_dispatch:
+
+# set staging flag to always hit sanity.work
+env:
+  SANITY_INTERNAL_ENV: 'staging'
+
+jobs:
+  daily-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+
+      - name: Install dependencies
+        run: npm ci
+        working-directory: ./tests/deploy-org
+
+      - name: Deploy Blueprint to sanity.work (daily test)
+        id: deploy
+        uses: ./deploy
+        env:
+          PROJECT_ID: ${{ secrets.PROJECT_ID }}
+        with:
+          sanity-token: ${{ secrets.SANITY_TOKEN }}
+          stack-id: ${{ secrets.STACK_ID }}
+          organization-id: ${{ secrets.ORGANIZATION_ID }}
+          working-directory: "./tests/deploy-org"
+
+      - name: Notify Slack on Failure
+        if: failure()
+        uses: slackapi/slack-github-action@af78098f536edbc4de71162a307590698245be95 # v3
+        with:
+          webhook: ${{ secrets.SLACK_WEBHOOK_URL }}
+          webhook-type: incoming-webhook
+          payload: |
+            text: "❌ GH Action Runtime CLI Test For Organizations Failed"
+            blocks:
+              - type: "section"
+                text:
+                  type: "mrkdwn"
+                  text: "*GH Action Runtime CLI Organizations Test* ❌\n*Status:* Failed\n*Environment:* Staging (sanity.work)\n*Workflow:* <${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|View Run>\n⚠️ Please check the workflow logs for details."

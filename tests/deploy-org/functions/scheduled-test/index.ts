@@ -3,7 +3,7 @@ import {createClient} from '@sanity/client'
 
 const projectId = process.env.PROJECT_ID
 if (!projectId) {
-    throw new Error('Missing SANITY_PROJECT_ID environment variable')
+    throw new Error('Missing PROJECT_ID environment variable')
 }
 
 export const handler = scheduledEventHandler(({context}) => {

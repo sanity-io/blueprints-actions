@@ -7,7 +7,7 @@ import {
 } from '@sanity/blueprints'
 
 const PROJECT_ID = process.env.PROJECT_ID
-if (!PROJECT_ID) throw new Error('Missing SANITY_PROJECT_ID environment variable')
+if (!PROJECT_ID) throw new Error('Missing PROJECT_ID environment variable')
 
 export default defineBlueprint({
     blueprintVersion: '2025-10-31',

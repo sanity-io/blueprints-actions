@@ -24,7 +24,7 @@ export default defineBlueprint({
             }
         }),
         defineDocumentWebhook({
-            name: 'test-webhook',
+            name: 'test-project-based-webhook',
             url: 'https://webhook.site/test-deploy-action',
             on: ['create', 'update'],
             filter: "_type == 'post'",
@@ -36,8 +36,8 @@ export default defineBlueprint({
             status: 'enabled',
         }),
         defineDataset({
-            name: 'test-dataset',
-            datasetName: 'test-dataset',
+            name: 'test-project-based-dataset',
+            datasetName: 'test-project-based-dataset',
             aclMode: 'public',
             project: process.env.SANITY_PROJECT_ID,
             lifecycle: {
@@ -45,8 +45,8 @@ export default defineBlueprint({
             },
         }),
         defineCorsOrigin({
-            name: 'test-project-cors',
-            origin: 'https://example.com',
+            name: 'test-project-based-cors',
+            origin: 'https://gha-project-based.com',
             allowCredentials: true,
             project: process.env.SANITY_PROJECT_ID,
         }),

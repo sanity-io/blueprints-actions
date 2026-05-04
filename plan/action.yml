@@ -79,7 +79,11 @@ runs:
             ## Sanity Blueprints Deployment Plan
             <details>
               <summary>View planned changes</summary>
-              <pre>${planOutput.trim().replace(/[\r\x1b][[^m]*m?/g, '')}</pre>
+              <pre>
+                \`\`\`
+                ${planOutput.trim()
+                \`\`\`
+              </pre>
             </details>
           `;
           

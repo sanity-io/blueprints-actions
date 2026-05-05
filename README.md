@@ -33,13 +33,23 @@ Before using these actions, you must:
 
 | Parameter           | Required     | Description                                                                                                          |
 |---------------------|--------------|----------------------------------------------------------------------------------------------------------------------|
-| `sanity-token`      | **Yes**      | Sanity API token with `deploy` permissions                                                                           |
+| `sanity-token`      | **Yes**      | **See Token Permissions below**                                                                                      |
 | `stack-id`          | **Yes**      | Blueprint stack ID (e.g., `ST_1234xyz`)                                                                              |
 | `project-id`        | Conditional* | Sanity project ID                                                                                                    |
 | `organization-id`   | Conditional* | Sanity organization ID                                                                                               |
 | `working-directory` | No           | Path to the directory containing your blueprint files (sanity.blueprint.ts, functions/). Defaults to repository root |
 
+### Token Permissions:
+
+| Scope        | Permission            | Capabilities                                                                        | Required input    |
+|--------------|-----------------------|-------------------------------------------------------------------------------------|-------------------|
+| Organization | `Blueprints Deployer` | All resource types                                                                  | `organization-id` |
+| Project      | `Blueprints Deployer` | Project-scoped resources only (document functions, webhooks, datasets, CORS, roles) | `project-id`      |
+
 *Either `project-id` **or** `organization-id` must be provided.
+
+*Deprecated permissions: Tokens with `deployStudio` permissions are still valid. Organization level resources will
+require the `Blueprints Deployer` organization level token. All new tokens should use the `Blueprints Deployer` token.
 
 *If you have your blueprint files in a specific directory, specify the `working-directory`*
 
@@ -47,12 +57,28 @@ Before using these actions, you must:
 
 ### 1. Create a Sanity API Token
 
+#### Option A (recommended): Using the CLI
+
+Run this in your Sanity project directory
+
+```shell
+npx sanity blueprints mint-deploy-token
+```
+
+The command will create a robot token with the correct permissions and prompt you to copy it. For non-interactive use:
+
+```shell
+npx sanity blueprints mint-deploy-token --print
+```
+
+#### Option B: Using the Sanity Management UI
+
 1. Navigate to [manage.sanity.io](https://manage.sanity.io)
 2. Select your project or organization
-3. Go to **API** → **Tokens**
-4. Click **Add API token**
-5. Create a token with deploy permissions
-6. Copy the token (you won't be able to see it again)
+3. Create a token with the permission matching your deployment scope:
+    - **Project token**: Navigate to project -> API -> Tokens -> select `Blueprints Deployer` permission
+    - **Organization token**: Navigate to organization -> API -> Tokens -> select `Blueprints Deployer` permission
+4. Copy the token (you won't be able to see it again)
 
 ### 2. Add Token to GitHub Secrets
 

@@ -1,10 +1,10 @@
-name: Test Deploy Action
+name: Test Plan Action for Organizations
 on:
   pull_request:
     paths:
-      - 'deploy/**'
+      - 'plan/**'
       - 'tests/**'
-      - '.github/workflows/test-deploy.yml'
+      - '.github/workflows/test-org-plan.yml'
 
 env:
   SANITY_INTERNAL_ENV: 'staging'
@@ -16,7 +16,7 @@ jobs:
       contents: read
       pull-requests: write
     steps:
-      - run: echo "Running integration test for Deploy action"
+      - run: echo "Running integration test for org level plan action"
 
       - uses: actions/checkout@v6
 
@@ -26,13 +26,14 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
-        working-directory: ./tests/deploy
+        working-directory: ./tests/plan-org
 
       - name: Integration Test
-        uses: ./deploy
+        uses: ./plan
+        env:
+          PROJECT_ID: ${{ secrets.PROJECT_ID }}
         with:
-          sanity-token: ${{ secrets.SANITY_TOKEN }}
-          stack-id: ${{ secrets.STACK_ID }}
+          sanity-token: ${{ secrets.SANITY_ORG_TOKEN }}
+          stack-id: ${{ secrets.ORG_STACK_ID }}
           organization-id: ${{ secrets.ORGANIZATION_ID }}
-          project-id: ${{ secrets.PROJECT_ID }}
-          working-directory: "./tests/deploy"
+          working-directory: "./tests/plan-org"
